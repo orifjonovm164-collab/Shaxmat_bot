@@ -1,0 +1,19 @@
+name: Kanalga post
+on:
+  schedule:
+    - cron: "    - cron: "0 3,5,8,11,14,17 * * *"
+  workflow_dispatch:
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests
+      - run: python kanal_viktorina.py
+        env:
+          TG_TOKEN: ${{ secrets.TG_TOKEN }}
+          GEMINI_KEY: ${{ secrets.GEMINI_KEY }}
+          KANAL: ${{ secrets.KANAL }}
